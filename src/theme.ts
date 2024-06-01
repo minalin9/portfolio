@@ -1,6 +1,12 @@
 import { createTheme } from "@mui/material/styles";
 
 declare module "@mui/material/styles" {
+  interface Palette {
+    notepad?: {
+      primary?: { main?: string };
+      background?: { default?: string };
+    };
+  }
   interface PaletteOptions {
     notepad?: {
       primary?: { main?: string };
@@ -11,6 +17,11 @@ declare module "@mui/material/styles" {
 
 const theme = createTheme({
   palette: {
+    primary: {
+      main: "#34A446",
+      light: "#64BA72",
+      dark: "#197B35",
+    },
     notepad: {
       primary: {
         main: "#20B72F",

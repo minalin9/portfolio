@@ -7,7 +7,10 @@ const MainLayout: FC<{ children?: ReactNode }> = ({ children }) => {
   const theme = useTheme();
 
   return (
-    <Column height="100vh" justifyContent="center" alignItems="center">
+    <Column
+      justifyContent="center"
+      alignItems="center"
+    >
       <Row width={"100%"} sx={{ overflowX: "hidden" }}>
         {children || <Outlet />}
       </Row>
