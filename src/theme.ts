@@ -22,6 +22,11 @@ const theme = createTheme({
       light: "#64BA72",
       dark: "#197B35",
     },
+    secondary: {
+      main: '#757575',
+      light: '#a4a4a4',
+      dark: '#494949',
+    },
     notepad: {
       primary: {
         main: "#20B72F",

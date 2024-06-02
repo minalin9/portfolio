@@ -154,7 +154,7 @@ const Screen: React.FC = () => {
         {animationCompleted && (
           <Box
             display="flex"
-            flexDirection='column'
+            flexDirection="column"
             justifyContent="center"
             alignItems="center"
             width="100%"
@@ -200,45 +200,94 @@ const Screen: React.FC = () => {
       </Column>
       {/* 2 */}
       <Column
-        sx={{
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          height: "100vh",
-          flexDirection: "column",
-          gap: "16px",
-          padding: "40px",
-        }}
+        justifyContent="center"
+        alignContent="center"
+        width="100%"
+        height="100vh"
+        gap={2}
+        p={4}
       >
-        <Typography
-          variant="h3"
-          fontSize="1.5em"
-          fontFamily="WantedSans-SemiBold"
-        >
-          ✨ Tech Stack ✨
-        </Typography>
-        <Row
-          sx={{
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "8px",
-            maxWidth: "480px",
-            flexWrap: "wrap",
-          }}
-        >
-          <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black" />
-          <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=Vue.js&logoColor=white" />
-          <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
-          <img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white" />
-          <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=Next.js&logoColor=white" />
-          <img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" />
-          <img src="https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white" />
-          <img src="https://img.shields.io/badge/Bootstrapap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" />
-          <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white" />
-          <img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=Heroku&logoColor=white" />
-          <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
-          <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
-        </Row>
+        <Column justifyContent="center" alignItems="center" flex={1}>
+          <Column
+            width="100%"
+            maxWidth={480}
+            border={`2px solid ${theme.palette.primary.main}`}
+          >
+            <Row
+              gap={1}
+              alignItems="center"
+              borderBottom={`1px solid ${theme.palette.primary.main}`}
+            >
+              <Typography
+                variant="h3"
+                fontFamily={"WantedSans-SemiBold"}
+                color="primary"
+                px={2}
+                py={1}
+              >
+                경력
+              </Typography>
+              <Typography sx={{ color: theme.palette.primary.dark }}>
+                총 3년 6개월
+              </Typography>
+            </Row>
+            <Column>
+              <Row alignItems="flex-start">
+                <Typography variant="h4" color="gray" px={2} py={1}>
+                  2020.07 ~ 2023.12
+                </Typography>
+                <Row
+                  alignItems="center"
+                  gap={1}
+                  px={2}
+                  py={1}
+                  borderLeft={`1px solid ${theme.palette.primary.main}`}
+                >
+                  <Typography variant="h3">한길로다</Typography>
+                  <Typography
+                    sx={{
+                      fontSize: "12px",
+                      color: theme.palette.secondary.main,
+                    }}
+                  >
+                    프론트엔드 ・ 개발팀 사원
+                  </Typography>
+                </Row>
+              </Row>
+            </Column>
+          </Column>
+        </Column>
+        <Column justifyContent="center" alignItems="center" gap={2} flex={1}>
+          <Typography
+            variant="h3"
+            fontSize="1.5em"
+            fontFamily="WantedSans-SemiBold"
+          >
+            ✨ Tech Stack ✨
+          </Typography>
+          <Row
+            sx={{
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "8px",
+              maxWidth: "480px",
+              flexWrap: "wrap",
+            }}
+          >
+            <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black" />
+            <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=Vue.js&logoColor=white" />
+            <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+            <img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white" />
+            <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=Next.js&logoColor=white" />
+            <img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" />
+            <img src="https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white" />
+            <img src="https://img.shields.io/badge/Bootstrapap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" />
+            <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white" />
+            <img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=Heroku&logoColor=white" />
+            <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
+            <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
+          </Row>
+        </Column>
       </Column>
       {/* 하단 */}
     </Column>

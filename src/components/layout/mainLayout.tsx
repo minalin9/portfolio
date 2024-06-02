@@ -1,10 +1,8 @@
-import { useTheme } from "@mui/material";
-import { Outlet } from "react-router-dom";
 import { FC, ReactNode } from "react";
+import { Outlet } from "react-router-dom";
 import { Column, Row } from "./elements";
 
 const MainLayout: FC<{ children?: ReactNode }> = ({ children }) => {
-  const theme = useTheme();
 
   return (
     <Column
