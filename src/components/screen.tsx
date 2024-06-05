@@ -1,10 +1,18 @@
-import React, { useState } from "react";
-import { Box, Button, Typography, useTheme } from "@mui/material";
 import { keyframes } from "@emotion/react";
-import happyImg from "/happy.png";
-import cloverImg from "/clover.png";
-import { Column, Row } from "./layout/elements";
+import {
+  Box,
+  Button,
+  Divider,
+  Tab,
+  Tabs,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { motion } from "framer-motion";
+import React, { useRef, useState } from "react";
+import { Column, Row } from "./layout/elements";
+import cloverImg from "/clover.png";
+import happyImg from "/happy.png";
 
 // flyIn 애니메이션 정의
 const flyIn = (startX: string, startY: string) => keyframes`
@@ -22,7 +30,6 @@ const Screen: React.FC = () => {
   const [animationCompleteCount, setAnimationCompleteCount] = useState(0);
   const totalAnimations = 32;
 
-  // 모든 애니메이션이 완료되었을 때 배경색 변경
   const handleAnimationEnd = () => {
     setAnimationCompleteCount((prevCount) => {
       const newCount = prevCount + 1;
@@ -55,6 +62,18 @@ const Screen: React.FC = () => {
     },
   };
 
+  const [tabValue, setTabValue] = useState(0);
+  const handleTabChange = (newValue: number) => {
+    setTabValue(newValue);
+  };
+  const HomeRef = useRef(null);
+  const ResumeRef = useRef(null);
+  const PortfolioRef = useRef(null);
+
+  const scrollToSection = (sectionRef: React.RefObject<HTMLElement>) => {
+    sectionRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <Column sx={{ width: "100%", height: "100%", overflowY: "auto" }}>
       {/* 네비게이션 바 */}
@@ -73,9 +92,30 @@ const Screen: React.FC = () => {
           "& button, & a": { fontFamily: "WantedSans-ExtraBold" },
         }}
       >
-        <Button variant="text">HOME</Button>
-        <Button variant="text">RESUME</Button>
-        <Button variant="text">PORTFOLIO</Button>
+        <Button
+          variant="text"
+          onClick={() => {
+            scrollToSection(HomeRef);
+          }}
+        >
+          HOME
+        </Button>
+        <Button
+          variant="text"
+          onClick={() => {
+            scrollToSection(ResumeRef);
+          }}
+        >
+          RESUME
+        </Button>
+        <Button
+          variant="text"
+          onClick={() => {
+            scrollToSection(PortfolioRef);
+          }}
+        >
+          PORTFOLIO
+        </Button>
         <Button
           variant="text"
           component="a"
@@ -87,6 +127,7 @@ const Screen: React.FC = () => {
       </Row>
       {/* 1 */}
       <Column
+        ref={HomeRef}
         sx={{
           justifyContent: "center",
           alignItems: "center",
@@ -200,6 +241,7 @@ const Screen: React.FC = () => {
       </Column>
       {/* 2 */}
       <Column
+        ref={ResumeRef}
         justifyContent="center"
         alignContent="center"
         width="100%"
@@ -207,56 +249,6 @@ const Screen: React.FC = () => {
         gap={2}
         p={4}
       >
-        <Column justifyContent="center" alignItems="center" flex={1}>
-          <Column
-            width="100%"
-            maxWidth={480}
-            border={`2px solid ${theme.palette.primary.main}`}
-          >
-            <Row
-              gap={1}
-              alignItems="center"
-              borderBottom={`1px solid ${theme.palette.primary.main}`}
-            >
-              <Typography
-                variant="h3"
-                fontFamily={"WantedSans-SemiBold"}
-                color="primary"
-                px={2}
-                py={1}
-              >
-                경력
-              </Typography>
-              <Typography sx={{ color: theme.palette.primary.dark }}>
-                총 3년 6개월
-              </Typography>
-            </Row>
-            <Column>
-              <Row alignItems="flex-start">
-                <Typography variant="h4" color="gray" px={2} py={1}>
-                  2020.07 ~ 2023.12
-                </Typography>
-                <Row
-                  alignItems="center"
-                  gap={1}
-                  px={2}
-                  py={1}
-                  borderLeft={`1px solid ${theme.palette.primary.main}`}
-                >
-                  <Typography variant="h3">한길로다</Typography>
-                  <Typography
-                    sx={{
-                      fontSize: "12px",
-                      color: theme.palette.secondary.main,
-                    }}
-                  >
-                    프론트엔드 ・ 개발팀 사원
-                  </Typography>
-                </Row>
-              </Row>
-            </Column>
-          </Column>
-        </Column>
         <Column justifyContent="center" alignItems="center" gap={2} flex={1}>
           <Typography
             variant="h3"
@@ -288,7 +280,246 @@ const Screen: React.FC = () => {
             <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
           </Row>
         </Column>
+        {/* //스택 */}
+        <Column justifyContent="center" alignItems="center" flex={1}>
+          <Column
+            width="100%"
+            maxWidth={480}
+            border={`2px solid ${theme.palette.primary.main}`}
+          >
+            <Row
+              gap={1}
+              justifyContent="flex-start"
+              alignItems="center"
+              borderBottom={`1px solid ${theme.palette.primary.main}`}
+              py={1}
+            >
+              <Typography
+                variant="h2"
+                fontFamily={"WantedSans-ExtraBold"}
+                color="primary"
+                minWidth={97}
+                maxWidth={97}
+                textAlign="center"
+              >
+                경력
+              </Typography>
+              <Column alignItems="flex-start">
+                <Row alignItems="center" gap={1}>
+                  <Typography variant="h3">한길로다</Typography>
+                  <Typography
+                    sx={{
+                      fontSize: "12px",
+                      color: theme.palette.secondary.main,
+                    }}
+                  >
+                    프론트엔드 ・ 개발팀 사원
+                  </Typography>
+                </Row>
+                <Typography sx={{ color: theme.palette.primary.dark }}>
+                  2020.07 ~ 2023.12(총 3년 6개월)
+                </Typography>
+              </Column>
+            </Row>
+            <Row alignItems="flex-start">
+              <Column maxWidth={100}>
+                <Tabs
+                  orientation="vertical"
+                  variant="scrollable"
+                  value={tabValue}
+                  onChange={(_, newValue) => handleTabChange(newValue)}
+                >
+                  {[
+                    "2023.01 - 2023.12",
+                    "2022.07 - 2022.12",
+                    "2020.07 - 2022.12",
+                  ].map((label, index) => (
+                    <Tab
+                      key={label}
+                      label={label}
+                      sx={{
+                        backgroundColor:
+                          tabValue === index
+                            ? theme.palette.primary.main
+                            : "inherit",
+                        color:
+                          tabValue === index
+                            ? `${theme.palette.notepad?.background?.default} !important`
+                            : theme.palette.primary.light,
+                        fontSize: 14,
+                        fontWeight: tabValue === index ? "bold" : "normal",
+                      }}
+                    />
+                  ))}
+                </Tabs>
+              </Column>
+              <Column
+                flex="auto"
+                px={2}
+                py={1}
+                borderLeft={`1px solid ${theme.palette.primary.main}`}
+              >
+                <Column>
+                  {tabValue === 0 && (
+                    <>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          color: theme.palette.secondary.main,
+                        }}
+                      >
+                        2023.01 - 2023.12
+                      </Typography>
+                      <Typography
+                        variant="h3"
+                        sx={{ color: theme.palette.secondary.main }}
+                      >
+                        사주바주 ➡️ 더큼만세력 웹/앱 서비스 리뉴얼 프로젝트
+                      </Typography>
+                    </>
+                  )}
+                  {tabValue === 1 && (
+                    <>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          color: theme.palette.secondary.main,
+                        }}
+                      >
+                        2022.07 - 2022.12
+                      </Typography>
+                      <Typography
+                        variant="h3"
+                        sx={{ color: theme.palette.secondary.main }}
+                      >
+                        외부 협력사와 전화 상담 프로그램 개발
+                      </Typography>
+                    </>
+                  )}
+                  {tabValue === 2 && (
+                    <>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          color: theme.palette.secondary.main,
+                        }}
+                      >
+                        2020.07 - 2022.12
+                      </Typography>
+                      <Typography
+                        variant="h3"
+                        sx={{ color: theme.palette.secondary.main }}
+                      >
+                        사주바주
+                      </Typography>
+                    </>
+                  )}
+                  <Divider sx={{ my: 1 }} />
+                  <Column
+                    minHeight={400}
+                    maxHeight={400}
+                    sx={{ overflowY: "auto" }}
+                  >
+                    {tabValue === 0 && (
+                      <Typography variant="h4" color="initial">
+                        - React.js 기반 사주바주 웹사이트 전면 리뉴얼 <br />-
+                        홈, 서비스 제공페이지 (만세력), 마이페이지, 결제 기능 UI
+                        및 API 연동
+                        <br /> - Material-UI(MUI) 라이브러리 기반 UI 컴포넌트
+                        개발
+                        <br /> - Chat GPT API 연동을 통한 AI 기반 사주 해석 기능
+                        개발
+                        <br /> 　1) API 연동
+                        <br /> 　　OpenAI Chat GPT API 엔드포인트에 HTTP 요청을
+                        보내기 위한 코드 작성 (Axios 사용)
+                        <br />
+                        　2)데이터 바인딩 <br />
+                        　　사용자 생년월일시 정보를 Chat GPT 모델에 맞는
+                        형식으로 가공 <br />
+                        　　Chat GPT 응답 데이터를 프론트엔드에서 효과적으로
+                        렌더링할 수 있게 파싱
+                        <br />
+                        　3) UI 개발
+                        <br /> 　　MUI 라이브러리를 활용한 사주 해석 결과 시각화
+                        UI 컴포넌트 개발 <br />
+                        　　사용자 입력 폼 및 결과 화면 UI 구성
+                        <br /> 　4) 상태 관리
+                        <br /> 　　사용자 입력 데이터와 Chat GPT 응답 결과를
+                        React 상태로 관리 　<br />
+                        　5) 데이터 전송
+                        <br /> 　　사용자 입력 데이터와 Chat GPT 응답을 서버
+                        API로 전송하기 위한 코드 작성 <br />
+                        　6) 라이프사이클 관리
+                        <br /> 　　API 응답 대기 중 UI 렌더링 최적화를 위한
+                        라이프사이클 훅 활용
+                        <br /> 　7) 에러 핸들링
+                        <br /> 　　API 호출 또는 데이터 파싱 실패 시 에러 처리
+                        로직 구현 - Google Play Store 앱 배포
+                        <br /> - Channel.io 채팅 솔루션 연동 및 고객 서비스 기능
+                        구축
+                      </Typography>
+                    )}
+                    {tabValue === 1 && (
+                      <Typography variant="h4" color="initial">
+                        - React.js 기반 상담사/관리자 페이지 개발
+                        <br /> - Sendbird 라이브러리를 활용한 전화 상담 시스템
+                        구축 <br />- Material-UI(MUI) 라이브러리를 통한
+                        상담자/관리자 UI 개발 <br />- REST API 연동을 통한
+                        데이터 바인딩
+                      </Typography>
+                    )}
+                    {tabValue === 2 && (
+                      <Typography variant="h4" color="initial">
+                        - 초기 HTML5, CSS, jQuery를 활용한 웹페이지 퍼블리싱
+                        업무 수행
+                        <br />
+                        - UI/UX 개선을 위한 A/B 테스트 및 반응형 웹 구현
+                        <br />
+                        - 사용자 친화적인 UI/UX 디자인 개선 작업 진행
+                        <br />
+                        - 월간 활성 사용자(MAU) 증대를 위한 생년월일 기반 사주
+                        테스트 결과 페이지 제작
+                        <br />
+                        <br />
+                        React를 통한 SPA 개발
+                        <br />
+                        - Styled-Component를 활용한 스타일링 작업
+                        <br />
+                        - React 기반 SEO(검색 엔진 최적화) 작업 수행
+                        <br />
+                        - Google Analytics(GA) 연동을 통한 사용자 활동 트래킹
+                        <br />
+                        <br />
+                        Vue.js 기반 웹 애플리케이션 개발
+                        <br />
+                        - 외부 벤더사와 협업 하며 커뮤니케이션 능력 배양
+                        <br />
+                        - Git을 통한 체계적인 버전 관리 경험
+                        <br />
+                        - Vue.js에서의 SEO 최적화 작업
+                        <br />
+                        - API 연동을 통한 데이터 바인딩
+                        <br />
+                      </Typography>
+                    )}
+                  </Column>
+                </Column>
+              </Column>
+            </Row>
+          </Column>
+        </Column>
+        {/* //경력 */}
       </Column>
+
+      <Column
+        ref={PortfolioRef}
+        justifyContent="center"
+        alignContent="center"
+        width="100%"
+        height="100vh"
+        gap={2}
+        p={4}
+      ></Column>
       {/* 하단 */}
     </Column>
   );

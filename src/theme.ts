@@ -126,9 +126,15 @@ const theme = createTheme({
     },
     h4: {
       fontSize: 14,
+      lineHeight:'18px',
+    },
+    h5:{
+      fontSize: 12,
+      lineHeight:'18px',
     },
     body1: {
       fontSize: 14,
+      lineHeight:'18px',
     },
   },
   breakpoints: {
