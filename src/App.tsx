@@ -4,6 +4,7 @@ import MainLayout from "./components/layout/mainLayout";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useState } from "react";
 import Screen from "./components/screen";
+import Crochet from "./components/crochet";
 function App() {
   const [queryClient] = useState(
     () =>
@@ -27,6 +28,7 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path="/" element={<Screen />} />
             <Route path="/project/normal-note" element={<Notepad />} />
+            <Route path="/project/crochet-note" element={<Crochet />} />
           </Route>
         </Routes>
       </QueryClientProvider>
