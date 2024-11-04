@@ -6,37 +6,99 @@ declare module "@mui/material/styles" {
       primary?: { main?: string };
       background?: { default?: string };
     };
+    crochet?: {
+      primary?: {
+        main?: string;
+        light?: string;
+        dark?: string;
+        red?: string;
+        pink?: string;
+        violet?: string;
+        blue?: string;
+        green?: string;
+      };
+      background?: { default?: string };
+    };
   }
   interface PaletteOptions {
     notepad?: {
       primary?: { main?: string };
       background?: { default?: string };
     };
+    crochet?: {
+      primary?: {
+        main?: string;
+        light?: string;
+        dark?: string;
+        red?: string;
+        pink?: string;
+        purple?: string;
+        blue?: string;
+        aqua?: string;
+        green?: string;
+        yellow?: string;
+        lightYellow?: string;
+        beige?: string;
+      };
+      background?: { default?: string };
+    };
   }
 }
-
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#34A446",
-      light: "#64BA72",
-      dark: "#197B35",
+      main: "#57AF57",
+      light: "#92d192",
+      dark: "#477F47",
     },
     secondary: {
-      main: '#757575',
-      light: '#a4a4a4',
-      dark: '#494949',
+      main: "#777c85",
+      light: "#b3b9c5",
+      dark: "#2d2d2d",
     },
     notepad: {
       primary: {
-        main: "#20B72F",
+        main: "#57AF57",
       },
       background: {
         default: "#FAF9F7",
       },
     },
+    crochet: {
+      primary: {
+        main: "#FF7B15",
+        light: "#fca369",
+        dark: "#DB550E",
+        red: "#f2777a",
+        pink: "#F38AB4",
+        purple: "#e1a6f2",
+        blue: "#6AB0F3",
+        aqua: "#76d4d6",
+        green: "#92d192",
+        yellow: "#ffd479",
+        lightYellow: "#ffeea6",
+        beige: "#ac8d58",
+      },
+      background: {
+        default: "#FAF7F7",
+      },
+    },
   },
   components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            backgroundColor: "#ffd479",
+          },
+        },
+        contained: {
+          "&:hover": {
+            backgroundColor: "rgba(0,0,0,0.2)",
+          },
+        },
+      },
+    },
     MuiInputLabel: {
       styleOverrides: {
         root: {},
@@ -126,15 +188,15 @@ const theme = createTheme({
     },
     h4: {
       fontSize: 14,
-      lineHeight:'18px',
+      lineHeight: "18px",
     },
-    h5:{
+    h5: {
       fontSize: 12,
-      lineHeight:'18px',
+      lineHeight: "18px",
     },
     body1: {
       fontSize: 14,
-      lineHeight:'18px',
+      lineHeight: "18px",
     },
   },
   breakpoints: {
